@@ -38,13 +38,7 @@ public class Engine {
 					Iterable<SMS> allSMS = smsSource.currentSMS();
 					for (SMS each : allSMS) {
 						if (!processed.contains(each)) {
-							try {
-								pendingSMS.put(each);
-								processed.add(each);
-								System.out.println("added " + each);
-							} catch (InterruptedException e) {
-								e.printStackTrace();
-							}
+							schedule(each);
 						}
 					}
 					sleepFor(5000L);
@@ -54,13 +48,22 @@ public class Engine {
 		producer.start();
 	}
 
+	public void schedule(SMS sms) {
+		try {
+			pendingSMS.put(sms);
+			processed.add(sms);
+			System.out.println("added " + sms);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
 	protected void startConsumer() {
 		Thread consumer = new Thread() {
 			public void run() {
 				while (true) {
 					try {
 						SMS current = pendingSMS.take();
-						System.out.println(current);
 						gui.display(current.message());
 					} catch (Exception e) {
 						e.printStackTrace();

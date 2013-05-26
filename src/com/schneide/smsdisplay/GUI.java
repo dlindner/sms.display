@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferedImage;
-import java.lang.reflect.InvocationTargetException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -31,7 +30,7 @@ public class GUI {
 			public void run() {
 				window.getContentPane().setLayout(null);
 				smsLabel.setOpaque(false);
-				smsLabel.setFont(new Font("Verdana", Font.BOLD, 72));
+				smsLabel.setFont(new Font("Verdana", Font.PLAIN, 45));
 				smsLabel.setVerticalTextPosition(SwingConstants.TOP);
 				smsLabel.setVerticalAlignment(SwingConstants.TOP);
 				smsLabel.setHorizontalTextPosition(SwingConstants.LEADING);
@@ -61,28 +60,9 @@ public class GUI {
 		EventQueue.invokeAndWait(new Runnable() {
 			@Override
 			public void run() {
-				smsLabel.setText(text);
+				smsLabel.setText("<html>" + text + "</html>");
 				window.revalidate();
 			}
 		});
-	}
-
-//	for (final SMS each : sms) {
-//		System.out.println(each);
-//		EventQueue.invokeAndWait(new Runnable() {
-//			@Override
-//			public void run() {
-//				window.getContentPane().removeAll();
-//				window.getContentPane().add(asLabel(each));
-//				window.revalidate();
-//			}
-//		});
-//		Thread.sleep(15000L);
-//	}
-
-	private JLabel asLabel(SMS sms) {
-		JLabel result = new JLabel(sms.message());
-		result.setFont(new Font("Verdana", Font.BOLD, 72));
-		return result;
 	}
 }

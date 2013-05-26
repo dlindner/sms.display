@@ -9,6 +9,16 @@ public class Main {
 		final SMSProvider smsProvider = new MobilePartnerSMSProvider(smsDataFile);
 		final GUI gui = new GUI();
 		final Engine engine = new Engine(smsProvider, gui);
+		engine.schedule(new SMS() {
+			@Override
+			public String sender() {
+				return "test";
+			}
+			@Override
+			public String message() {
+				return "1234 6789 1234 6789 1234 6789 1234 6789 1234 6789 1234 6789 1234 6789 1234 6789 1234 6789 1234 6789 1234 6789 1234 6789 1234 6789 1234 6789 1234 6789 1234 6789 ";
+			}
+		});
 		engine.start();
 	}
 }
