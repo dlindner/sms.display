@@ -5,6 +5,10 @@ import java.util.Set;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
+import com.schneide.smsdisplay.gui.GUI;
+import com.schneide.smsdisplay.model.SMS;
+import com.schneide.smsdisplay.model.SMSProvider;
+
 public class Engine {
 
 	private final SMSProvider smsSource;

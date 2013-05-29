@@ -1,4 +1,4 @@
-package com.schneide.smsdisplay;
+package com.schneide.smsdisplay.model;
 
 public interface SMS {
 

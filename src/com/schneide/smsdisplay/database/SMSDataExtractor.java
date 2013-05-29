@@ -1,4 +1,4 @@
-package com.schneide.smsdisplay;
+package com.schneide.smsdisplay.database;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import com.schneide.smsdisplay.model.SMS;
 import com.schneide.smsdisplay.util.SectionableInputStream;
 
 public class SMSDataExtractor {

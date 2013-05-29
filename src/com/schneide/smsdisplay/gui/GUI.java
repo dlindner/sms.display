@@ -1,4 +1,4 @@
-package com.schneide.smsdisplay;
+package com.schneide.smsdisplay.gui;
 
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -18,11 +18,10 @@ public class GUI {
 	private final JLabel smsLabel;
 	private final JLabel backgroundImage;
 
-
-	public GUI() throws Exception {
+	public GUI(String backgroundImagePath) throws Exception {
 		super();
 		this.window = new JWindow();
-		final BufferedImage background = ImageIO.read(ClassLoader.getSystemResourceAsStream("com/schneide/smsdisplay/rahmen.jpg"));
+		final BufferedImage background = ImageIO.read(ClassLoader.getSystemResourceAsStream(backgroundImagePath));
 		this.backgroundImage = new JLabel(new ImageIcon(background));
 		this.smsLabel = new JLabel();
 		EventQueue.invokeAndWait(new Runnable() {
