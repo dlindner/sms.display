@@ -5,6 +5,10 @@ import java.awt.Font;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -21,7 +25,7 @@ public class GUI {
 	public GUI(String backgroundImagePath) throws Exception {
 		super();
 		this.window = new JWindow();
-		final BufferedImage background = ImageIO.read(ClassLoader.getSystemResourceAsStream(backgroundImagePath));
+		final BufferedImage background = ImageIO.read(backgroundImageStream(backgroundImagePath));
 		this.backgroundImage = new JLabel(new ImageIcon(background));
 		this.smsLabel = new JLabel();
 		EventQueue.invokeAndWait(new Runnable() {
@@ -41,6 +45,14 @@ public class GUI {
 				smsLabel.setSize(640, 450);
 			}
 		});
+	}
+
+	private InputStream backgroundImageStream(String backgroundImagePath) throws FileNotFoundException {
+		File imageFile = new File(backgroundImagePath);
+		if (imageFile.isFile() && imageFile.canRead()) {
+			return new FileInputStream(imageFile);
+		}
+		return ClassLoader.getSystemResourceAsStream("rahmen.jpg");
 	}
 
 	public void show() throws Exception {
